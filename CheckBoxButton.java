@@ -19,6 +19,7 @@ public class CheckBoxButton{
         JCheckBox ckb1=new JCheckBox("java...");
         ckb1.setBounds(150,200,200,50);
         ckb1.setFont(f);
+        ckb1.setSelected(true); // This will make checkbox 1 selected by default
         c.add(ckb1);
 
         JCheckBox ckb2=new JCheckBox("C++...");
