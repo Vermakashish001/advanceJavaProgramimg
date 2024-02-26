@@ -27,7 +27,6 @@ class Flow_Layout extends JFrame{
         setVisible(true);
     }
 }
-
 public class FlowLayoutDemo{
     public static void main(String[] args){
         new Flow_Layout();
