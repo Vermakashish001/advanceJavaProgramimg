@@ -3,85 +3,74 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-class Calculator extends JFrame implements ActionListener
-{
+class Calculator extends JFrame implements ActionListener {
     Container c;
     JLabel lblno1, lblno2, lblresult;
     JTextField jtf1, jtf2;
     JButton btnadd, btnsub, btnmul, btndiv, btnmod;
-    Calculator()
-    {
+
+    Calculator() {
         setTitle("My Calculator");
-        setSize(800,800);
-        setLocation(400,200);
+        setSize(800, 800);
+        setLocation(400, 200);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        c=getContentPane();
+        c = getContentPane();
         c.setLayout(null);
-        Font f=new Font("Verdana",Font.BOLD,30);
+        Font f = new Font("Verdana", Font.BOLD, 30);
 
-        // label no 1
-        lblno1=new JLabel("First Number : ");
-        lblno1.setBounds(100,100,300,50);
+        lblno1 = new JLabel("First Number : ");
+        lblno1.setBounds(100, 100, 300, 50);
         c.add(lblno1);
         lblno1.setFont(f);
 
-        // label no 2
-        lblno2=new JLabel("Second Number : ");
-        lblno2.setBounds(100,170,300,50);
+        lblno2 = new JLabel("Second Number : ");
+        lblno2.setBounds(100, 170, 300, 50);
         c.add(lblno2);
         lblno2.setFont(f);
 
-        // Text Field 1
-        jtf1=new JTextField("0");
-        jtf1.setBounds(400,100,300,50);
+        jtf1 = new JTextField("0");
+        jtf1.setBounds(400, 100, 300, 50);
         c.add(jtf1);
         jtf1.setFont(f);
 
-        // Text Field 2
-        jtf2=new JTextField("0");
-        jtf2.setBounds(400,170,300,50);
+        jtf2 = new JTextField("0");
+        jtf2.setBounds(400, 170, 300, 50);
         c.add(jtf2);
         jtf2.setFont(f);
 
-        // add
-        btnadd=new JButton("+");
-        btnadd.setBounds(100,250,100,50);
+        btnadd = new JButton("+");
+        btnadd.setBounds(100, 250, 100, 50);
         btnadd.setFont(f);
         c.add(btnadd);
         btnadd.addActionListener(this);
 
-        //sub
-        btnsub=new JButton("-");
-        btnsub.setBounds(250,250,100,50);
+        btnsub = new JButton("-");
+        btnsub.setBounds(250, 250, 100, 50);
         btnsub.setFont(f);
         c.add(btnsub);
         btnsub.addActionListener(this);
 
-        // Mul
-        btnmul=new JButton("*");
-        btnmul.setBounds(400,250,100,50);
+        btnmul = new JButton("*");
+        btnmul.setBounds(400, 250, 100, 50);
         btnmul.setFont(f);
         c.add(btnmul);
         btnmul.addActionListener(this);
 
-        // Div
-        btndiv=new JButton("/");
-        btndiv.setBounds(550,250,100,50);
+        btndiv = new JButton("/");
+        btndiv.setBounds(550, 250, 100, 50);
         btndiv.setFont(f);
         c.add(btndiv);
         btndiv.addActionListener(this);
 
-        // Mod
-        btnmod=new JButton("%");
-        btnmod.setBounds(700,250,100,50);
+        btnmod = new JButton("%");
+        btnmod.setBounds(700, 250, 100, 50);
         btnmod.setFont(f);
         c.add(btnmod);
         btnmod.addActionListener(this);
 
-        // label result
-        lblresult=new JLabel("Result : ");
-        lblresult.setBounds(200,350,300,50);
+        lblresult = new JLabel("Result : ");
+        lblresult.setBounds(200, 350, 300, 50);
         c.add(lblresult);
         lblresult.setFont(f);
 
@@ -89,42 +78,34 @@ class Calculator extends JFrame implements ActionListener
     }
 
     public void actionPerformed(ActionEvent e) {
-        try{
+        try {
             int x = Integer.parseInt(jtf1.getText());
             int y = Integer.parseInt(jtf2.getText());
-            int z = 0;
-            if(btnadd==e.getSource()){
-                z= x+y;
-                lblresult.setText("Result:"+z);
+            double z = 0; // Use double for division result
+            if (e.getSource().equals(btnadd)) {
+                z = x + y;
+            } else if (e.getSource().equals(btnsub)) {
+                z = x - y;
+            } else if (e.getSource().equals(btnmul)) {
+                z = x * y;
+            } else if (e.getSource().equals(btndiv)) {
+                if (y == 0) {
+                    lblresult.setText("Invalid value: Division by Zero");
+                    return; // Exit method early
+                }
+                z = (double) x / y;
+            } else if (e.getSource().equals(btnmod)) {
+                z = x % y;
             }
-            if(btnsub==e.getSource()){
-                z= x-y;
-                lblresult.setText("Result:"+z);
-            }
-            if(btnmul==e.getSource()){
-                z= x*y;
-                lblresult.setText("Result:"+z);
-            }
-            if(btndiv==e.getSource()){
-                z= x/y;
-                lblresult.setText("Result:"+z);
-            }
-            if(btnmod==e.getSource()){
-                z= x%y;
-                lblresult.setText("Result:"+z);
-            }
-        }
-        catch(ArithmeticException ex){
-            lblresult.setText("Invalid value: / by Zero");
-        }
-        catch(NumberException ex){
-            lblresult.setText("invalid value: / by str");
+            lblresult.setText("Result: " + z); // Set result text once
+        } catch (NumberFormatException ex) {
+            lblresult.setText("Invalid value: Not a number");
         }
     }
 }
 
 public class My_Calculator {
     public static void main(String[] args) {
-        Calculator c=new Calculator();
+        Calculator c = new Calculator();
     }
 }
