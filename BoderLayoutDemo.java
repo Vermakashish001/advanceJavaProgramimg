@@ -10,7 +10,7 @@ public class BoderLayoutDemo{
         jf.setLocationRelativeTo(null);
         Container c = jf.getContentPane();
 
-        BorderLayout bl = new BorderLayout();
+        BorderLayout bl = new BorderLayout(10,5);
         c.setLayout(bl);
         JButton b1 = new JButton("North");
         JButton b2 = new JButton("South");
