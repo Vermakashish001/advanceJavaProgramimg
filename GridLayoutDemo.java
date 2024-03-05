@@ -14,7 +14,7 @@ class MyFrame5 extends JFrame{
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         Container c = getContentPane();
-        GridLayout gl=new GridLayout(2,5);
+        GridLayout gl=new GridLayout(2,5,10,10);// can give num of row num of col also can give gap
         c.setLayout(gl);
         c.add(b1);
         c.add(b2);
