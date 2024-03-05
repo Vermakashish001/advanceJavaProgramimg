@@ -11,6 +11,9 @@ public class BoderLayoutDemo{
         Container c = jf.getContentPane();
 
         BorderLayout bl = new BorderLayout(10,5);
+        //bl.setVgap(15);
+       // bl.setHgap(20);
+       
         c.setLayout(bl);
         JButton b1 = new JButton("North");
         JButton b2 = new JButton("South");
