@@ -23,15 +23,12 @@ class MyFrame8 extends JFrame implements MouseListener {
         btn.setBounds(50, 50, 300, 100);
         btn.setFont(new Font("Arial", Font.BOLD, 30));
         c.add(btn);
-
-        // Add this line
+        
         this.addMouseListener(this);
 
         setVisible(true);
     }
 
-    // Implement the methods of MouseListener here
-    // ...
 
 }
 
